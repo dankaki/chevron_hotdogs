@@ -7,7 +7,7 @@ import random
 random.seed(0)
 np.random.seed(0)
 
-data = pd.read_csv('scoring.csv')
+data = pd.read_excel('submission_file.xlsx')
 data = data.filter(items = ['StoreNumber','dayOfTheYear','3HourBucket'])
 data.set_axis(['store', 'day', 'bucket'], axis = 'columns', inplace = True)
 data['week'] = np.floor(data['day'] / 7)
@@ -55,5 +55,4 @@ for index, row in data.iterrows():
     preds_table['GrossSoldQuantity'].append(int(preds[0].item() + 0.5))
 
 df = pd.DataFrame(preds_table)
-
-df.to_csv('prediction.csv', index=False)
+df.to_excel('prediction_subfile.xlsx')
